@@ -5,7 +5,10 @@ route.get('/google',passport.authenticate('google',{
     scope:['profile']
 }));
 
-route.get('/profile',passport.authenticate('google'),(req,res)=>{
+route.get('/profile',passport.authenticate('google',{ 
+    successRedirect: '/auth/google/success',
+    failureRedirect: '/auth/google/failure'
+}),(req,res)=>{
     res.send('YOU ARE LOGGED IN WITH GOOGLE')
 });
 module.exports = route;
